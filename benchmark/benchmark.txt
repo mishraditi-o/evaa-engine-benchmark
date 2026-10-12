@@ -10,21 +10,22 @@ Updated the EVAA Engine ingestion workflow to include nine benchmark metrics, pe
 
 ## 2. Changes Made
 
-- **Parsing duration:** Measures the time required to parse input event data.
-- **Event count:** Reports the total number of events processed.
-- **Processing throughput:** Calculates parsing and total ingestion throughput in events per second.
-- **HDF5 writing time:** Measures the duration of HDF5 file generation.
-- **Parquet writing time:** Measures the duration of Parquet file generation.
-- **Total ingestion duration:** Measures the overall time taken by the ingestion pipeline.
-- **Peak memory usage:** Samples process resident memory (RSS) during ingestion.
-- **Output file sizes:** Reports individual and combined HDF5 and Parquet file sizes.
-- **Validation and output correctness:** Checks input validation, output file existence, HDF5 dataset structure, Parquet schema, row counts, and selected Parquet values.
+- 1. Parsing duration:** Measures the time required to parse input event data.
+- 2. Event count:** Reports the total number of events processed.
+- 3. Processing throughput:** Calculates parsing and total ingestion throughput in events per second.
+- 4. HDF5 writing time:** Measures the duration of HDF5 file generation.
+- 5. Parquet writing time:** Measures the duration of Parquet file generation.
+- 6. Total ingestion duration:** Measures the overall time taken by the ingestion pipeline.
+- 7. Peak memory usage:** Samples process resident memory (RSS) during ingestion.
+- 8. Output file sizes:** Reports individual and combined HDF5 and Parquet file sizes.
+- 9. Validation and output correctness:** Checks input validation, output file existence, HDF5 dataset structure, Parquet schema, row counts, and selected Parquet values.
 
 ## 3. Files Updated
 
 - `ingest/index.js` — Integrated benchmark measurements and verification into the ingestion workflow.
 - `writers/parquet.writer.js` — Reviewed the Parquet writing completion behavior for reliable timing.
 - `utils/output-verification.js` — Added output verification for HDF5 and Parquet files.
+- `benchmark/metrics.js` — Added benchmark metrics collection for processing time, memory usage, throughput, and output file sizes.
 
 ## 4. Example Benchmark Report
 
