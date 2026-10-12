@@ -8,6 +8,14 @@ import fs from 'node:fs/promises';
 import { ingest } from './index.js';
 
 const app = express();
+app.get('/', (req, res) => {
+  res.json({
+    status: 'success',
+    message: 'Welcome to EVAA Engine',
+    health: '/api/status',
+    ingest: 'POST /api/ingest'
+  });
+});
 
 app.use(express.json());
 
