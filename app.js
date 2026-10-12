@@ -10,11 +10,21 @@ const app = express();
 
 app.use(express.json());
 
-const upload = multer({
-  dest: path.join(
-    os.tmpdir(),
-    'evaa-upload'
-  )
+const uploadDir = path.join(os.tmpdir(), 'evaa-upload');
+
+await fs.mkdir(uploadDir, { recursive: true }).catch(() => {});
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, uploadDir);
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname).toLowerCase();
+    cb(null, `${crypto.randomUUID()}${ext}`);
+  }
+});
+
+const upload = multer({ storage });
 });
 
 /*
