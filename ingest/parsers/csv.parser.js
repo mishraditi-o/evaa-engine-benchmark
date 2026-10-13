@@ -73,11 +73,13 @@ export async function parseCsv(filePath) {
   }
 
   const parsedData = [];
+  let skippedRows = 0;
 
   for (const line of dataLines) {
     const tokens = line.split(',').map(clean);
 
     if (tokens.length < 4) {
+      skippedRows++;
       continue;
     }
 
@@ -98,8 +100,14 @@ export async function parseCsv(filePath) {
         y: Math.floor(y),
         p: Math.floor(p)
       });
+    } else {
+      skippedRows++;
     }
   }
+
+  // Rows that could not be read are counted, never dropped silently.
+  // ingest() reports this number in metadata.skippedRows.
+  parsedData.skippedRows = skippedRows;
 
   return parsedData;
 }
