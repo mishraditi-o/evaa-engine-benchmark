@@ -23,7 +23,7 @@ function valuesMatch(actual, expected) {
 
   if (!Number.isFinite(a) || !Number.isFinite(e)) return false;
 
-return a === e || Math.abs(a - e) <= 1e-9;
+  return a === e || Math.abs(a - e) <= 1e-9;
 }
 
 export async function verifyOutputs({
